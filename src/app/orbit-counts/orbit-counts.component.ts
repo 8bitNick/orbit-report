@@ -1,15 +1,18 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Satellite } from '../satellite';
 
+
 @Component({
   selector: 'app-orbit-counts',
   templateUrl: './orbit-counts.component.html',
   styleUrls: ['./orbit-counts.component.css']
 })
 export class OrbitCountsComponent implements OnInit {
+  satelliteTypes: string[] = ["Communication", "Probe", "Space Station", "Telescope", "Space Debris", "Positioning"]
 
   @Input() satellites: Satellite[];
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
@@ -27,5 +30,4 @@ export class OrbitCountsComponent implements OnInit {
     }
     return typeCount;
   }
-
 }

@@ -9,7 +9,7 @@ import { OrbitCountsComponent } from './orbit-counts/orbit-counts.component';
   declarations: [
     AppComponent,
     OrbitListComponent,
-    OrbitCountsComponent
+    OrbitCountsComponent,
   ],
   imports: [
     BrowserModule
