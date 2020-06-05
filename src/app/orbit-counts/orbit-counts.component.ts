@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, AfterContentChecked } from '@angular/core';
 import { Satellite } from '../satellite';
 
 
@@ -7,14 +7,15 @@ import { Satellite } from '../satellite';
   templateUrl: './orbit-counts.component.html',
   styleUrls: ['./orbit-counts.component.css']
 })
-export class OrbitCountsComponent implements OnInit {
-  satelliteTypes: string[] = ["Communication", "Probe", "Space Station", "Telescope", "Space Debris", "Positioning"]
+export class OrbitCountsComponent implements AfterContentChecked {
+  satelliteTypes: string[] = [];
 
   @Input() satellites: Satellite[];
   constructor() {
   }
 
-  ngOnInit() {
+  ngAfterContentChecked() {
+    this.typesOfSatellites();
   }
 
   totalSatelliteCount(): number {
@@ -29,5 +30,13 @@ export class OrbitCountsComponent implements OnInit {
       }
     }
     return typeCount;
+  }
+
+  typesOfSatellites(): void {
+    for (const satellite of this.satellites) {
+      if (!this.satelliteTypes.includes(satellite.type)) {
+        this.satelliteTypes.push(satellite.type);
+      }
+    }
   }
 }
